@@ -17,10 +17,15 @@ body {
 #startBtn:hover {
   filter: drop-shadow(
     0 0 0.75rem rgba(0, 0, 0, 0.51)
-  )
-
+  );
 }
 
-.hide{
-    display: none;
+.hide {
+  display: none;
+}
+
+.answeInputBox {
+  width: 200px;
+
+  margin: 10px auto;
 }

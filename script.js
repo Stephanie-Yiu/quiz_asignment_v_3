@@ -186,9 +186,9 @@ function applyColor(element) {
     colorPalette[0].borderColor;
   document.body.style.color =
     colorPalette[0].textColor;
-  usedColor.push(colorPalette[0]);
+
   element.style.color = colorPalette[0].textColor;
-  usedColor.push(colorPalette[0]);
+  usedColor.push(colorPalette.shift());
 }
 
 startBtn.addEventListener(
@@ -199,10 +199,106 @@ startBtn.addEventListener(
 const nameDiv =
   document.querySelector('#nameDiv');
 
+const showName =
+  document.querySelector('#showName');
+
+const inputName =
+  document.getElementById('inputName');
+
 function askName() {
-  const inputName =
-    document.querySelector('#inputname').value;
-  alert(inputName);
+  if (
+    inputName.value.length < 0 ||
+    inputName.value == ''
+  ) {
+    alert('Please enter your name !!!');
+  }
+
+  if (inputName.value.length > 0) {
+    alert('Welcome ' + inputName.value);
+    showName.innerHTML = `Hello ${inputName.value}`;
+    nameDiv.classList.add('hide');
+    showQuestion();
+  }
 }
 
 startBtn.addEventListener('click', askName);
+
+class questions {
+  constructor(
+    number,
+    question,
+    type,
+    answer,
+    corrAnswer,
+  ) {
+    this.number = number;
+    this.question = question;
+    this.type = type;
+    this.answer = answer;
+    this.corrAnswer = corrAnswer;
+  }
+}
+
+questionList = [];
+questionList.push(
+  new questions(
+    '1',
+    'Which one below is a stone friut',
+    'mc',
+    ['apple', 'strawberry', 'grape', 'dill'],
+    'apple',
+  ),
+);
+
+questionList.push(
+  new questions(
+    '2',
+    'There are white color strawberries',
+    't/f',
+    ['True', 'False'],
+    'True',
+  ),
+);
+
+questionList.push(
+  new questions(
+    '3',
+    'how to spell &#10084 <input class=" d-block answeInputBox" type="text id="ans1">  <br> How to spell  &#127822  <input <input class="answeInputBox d-block" type="text id="ans1">  <br> ',
+    'fillInBlanks',
+    ['heart', 'apple'],
+    ['heart', 'apple'],
+  ),
+);
+
+questionList.push(
+  new questions(
+    '4',
+    'Which one below is a red in color',
+    'mc',
+    ['apple', 'blueberries', 'grass', 'your mum'],
+    'apple',
+  ),
+);
+
+const question_box = document.querySelector(
+  '#question_box',
+);
+const score_box_name = document.querySelector(
+  '#score_box_name',
+);
+const scoreNumber = document.querySelector(
+  '#scoreNumber',
+);
+let score = 0;
+
+let randomQ = shuffle(questionList);
+
+function showQuestion() {
+  score_box_name.innerHTML = `${inputName.value}`;
+  scoreNumber.innerHTML = `${score}/ ${questionList.length}`;
+let currentQuestion= randomQ[0];
+
+
+
+
+}
